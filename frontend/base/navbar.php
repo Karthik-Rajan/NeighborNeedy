@@ -66,7 +66,7 @@
 					<li><a href="signin.php">Sign In</a></li>
 					<li><a href="signup.php">Register</a></li>
 				</ul>
-				<a href="https://demo.themeregion.com/trade/ad-post.html" class="btn">Get Help</a>
+				<a href="pre-post.php" class="btn">Post Work Ad</a>
 			</div>
 		</div>
 	</nav>
