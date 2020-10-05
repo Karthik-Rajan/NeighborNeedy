@@ -58,14 +58,13 @@
 						</span>
 						<i class="fa fa-angle-down"></i></a>
 					<ul class="dropdown-menu language-change">
-						<li><input type="text" class="form-control" id="search_location"></li>
-						<li><a href="https://demo.themeregion.com/trade/#">United Kingdom</a></li>
-						<li><a href="https://demo.themeregion.com/trade/#">United States</a></li>
-						<li><a href="https://demo.themeregion.com/trade/#">China</a></li>
-						<li><a href="https://demo.themeregion.com/trade/#">Russia</a></li>
+						<li id="search_location_li"><input type="text" class="form-control" id="search_location"></li>
+
 					</ul>
 				</div>
+			</div>
 
+			<div class="nav-right">
 				<ul class="sign-in">
 					<li><i class="fa fa-user"></i></li>
 					<li><a class="cd-signin" href="#0">Sign in</a></li>

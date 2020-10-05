@@ -123,6 +123,9 @@
 </html>
 
 <script type="text/javascript">
+
+	$(document).ready(function () {
+
 	var geocoder;
 	var map;
 	var marker;
@@ -173,7 +176,7 @@
 
 	//google.maps.event.addDomListener(window, 'load', initialize);
 
-	$(document).ready(function () {
+
 		//load google map
 		//initialize();
 
@@ -182,6 +185,7 @@
 		 */
 		var PostCodeid = '#search_location';
 		$(function () {
+			var address = '';
 			$(PostCodeid).autocomplete({
 				source: function (request, response) {
 					geocoder.geocode({
@@ -191,13 +195,10 @@
 						console.log(status);
 						console.log(results);
 						response($.map(results, function (item) {
-							return {
-								label: item.formatted_address,
-								value: item.formatted_address,
-								lat: item.geometry.location.lat(),
-								lon: item.geometry.location.lng()
-							};
+							address += '<li><a class="address_item">'+item.formatted_address+'</a></li>';
 						}));
+
+						$('#search_location_li').after(address);
 					});
 				},
 				select: function (event, ui) {
@@ -242,6 +243,13 @@
 				}
 			});
 		});*/
+
+
+		$('ul.language-change li a.address_item').click(function(){
+			alert();
+			var address = $(this).text();
+			$('.change-text').text(address);
+		});
 	});
 
 </script>
