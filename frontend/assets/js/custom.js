@@ -216,3 +216,6 @@ $(".generate_otp").click(function(){
     });
 });
 
+$('.change-text').click(function(){
+    
+});

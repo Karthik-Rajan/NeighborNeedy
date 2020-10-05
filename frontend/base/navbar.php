@@ -51,10 +51,14 @@
 			</div>
 			<div class="nav-right">
 				<div class="dropdown language-dropdown">
-					<i class="fa fa-globe"></i>
-					<a data-toggle="dropdown" href="#"><span class="change-text">United Kingdom</span> <i class="fa fa-angle-down"></i></a>
+					<i class="fa fa-map-marker"></i>
+					<a data-toggle="dropdown" href="#">
+						<span style="font-size:14px;" class="change-text">
+							Select Your Location
+						</span>
+						<i class="fa fa-angle-down"></i></a>
 					<ul class="dropdown-menu language-change">
-						<li><input type="text" class="form-control"></li>
+						<li><input type="text" class="form-control" id="search_location"></li>
 						<li><a href="https://demo.themeregion.com/trade/#">United Kingdom</a></li>
 						<li><a href="https://demo.themeregion.com/trade/#">United States</a></li>
 						<li><a href="https://demo.themeregion.com/trade/#">China</a></li>
