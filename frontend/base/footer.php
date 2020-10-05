@@ -76,6 +76,23 @@
 </ul>
 </div>
 </div>
+
+<div aria-live="polite" aria-atomic="true" style="position: fixed; min-height: 200px;">
+  <div style="position: fixed; top: 20px; right: 20px; min-width: 250px;">
+    <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
+      <div class="toast-header">
+        <strong class="mr-auto status"></strong>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+	      <span aria-hidden="true">&times;</span>
+	    </button>
+      </div>
+      <div class="toast-body">
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <script async="" src="./assets/js/analytics.js"></script><script src="./assets/js/jquery.min.js" type="text/javascript"></script>
 <script src="./assets/js/popper.min.js" type="text/javascript"></script>
 <script src="./assets/js/modernizr.min.js" type="text/javascript"></script>
@@ -87,6 +104,8 @@
 <script src="./assets/js/price-range.js" type="text/javascript"></script>
 <script src="./assets/js/jquery.countdown.js" type="text/javascript"></script>
 <script src="./assets/js/switcher.js" type="text/javascript"></script>
+<script src="./assets/js/signin-modal.js" type="text/javascript"></script>
+<script src="./assets/js/otp.js" type="text/javascript"></script>
 <script src="./assets/js/custom.js" type="text/javascript"></script>
 <!-- <script type="text/javascript">
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -96,4 +115,6 @@
 	ga('create', 'UA-73239902-1', 'auto');
 	ga('send', 'pageview');
 </script> -->
-<a id="scrollUp" href="#top" style="display: none; position: fixed; z-index: 2147483647;">Scroll to top</a></body></html>
+
+</body>
+</html>

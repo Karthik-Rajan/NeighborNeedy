@@ -1,3 +1,7 @@
+<?php 
+include_once 'base/header.php';
+include_once 'base/navbar.php';
+?>
 <section id="main" class="clearfix user-page">
 	<div class="container">
 		<div class="row text-center">
@@ -37,3 +41,6 @@
 		</div>
 	</div>
 </section>
+<?php 
+include_once 'base/footer.php';
+?>
