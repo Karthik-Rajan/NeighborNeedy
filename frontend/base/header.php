@@ -18,6 +18,7 @@
 	<link rel="stylesheet" href="./assets/css/responsive.css">
 	<link href="./assets/css/css" rel="stylesheet" type="text/css">
 	<link href="./assets/css/css_1" rel="stylesheet" type="text/css">
+	<link href="./assets/css/signin-modal.css" rel="stylesheet" type="text/css">
 	<link rel="icon" href="./assets/img/logo/144X144.png">
 	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="./assets/img/logo/114X114.png">
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="./assets/img/logo/114X114.png">

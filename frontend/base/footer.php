@@ -76,18 +76,40 @@
 </ul>
 </div>
 </div>
-<script async="" src="./assets/js/analytics.js"></script><script src="./assets/js/jquery.min.js" type="text/javascript"></script>
+
+<div aria-live="polite" aria-atomic="true" style="position: fixed; min-height: 200px;">
+  <div style="position: fixed; top: 20px; right: 20px; min-width: 250px;">
+    <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
+      <div class="toast-header">
+        <strong class="mr-auto status"></strong>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+	      <span aria-hidden="true">&times;</span>
+	    </button>
+      </div>
+      <div class="toast-body">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- <script async="" src="./assets/js/analytics.js"></script> -->
+<script src="./assets/js/jquery.min.js" type="text/javascript"></script>
 <script src="./assets/js/popper.min.js" type="text/javascript"></script>
 <script src="./assets/js/modernizr.min.js" type="text/javascript"></script>
 <script src="./assets/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="./assets/js/js" type="text/javascript"></script>
-<script src="./assets/js/gmaps.min.js" type="text/javascript"></script>
+<!-- <script src="./assets/js/js" type="text/javascript"></script> -->
+<!-- <script src="./assets/js/gmaps.min.js" type="text/javascript"></script> -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp5nhtTfpcqpE0i_5LiT1yHHaqIwF6SiI"></script>
 <script src="./assets/js/owl.carousel.min.js" type="text/javascript"></script>
 <script src="./assets/js/scrollup.min.js" type="text/javascript"></script>
 <script src="./assets/js/price-range.js" type="text/javascript"></script>
 <script src="./assets/js/jquery.countdown.js" type="text/javascript"></script>
 <script src="./assets/js/switcher.js" type="text/javascript"></script>
+<script src="./assets/js/signin-modal.js" type="text/javascript"></script>
+<script src="./assets/js/otp.js" type="text/javascript"></script>
 <script src="./assets/js/custom.js" type="text/javascript"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- <script type="text/javascript">
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -96,4 +118,138 @@
 	ga('create', 'UA-73239902-1', 'auto');
 	ga('send', 'pageview');
 </script> -->
-<a id="scrollUp" href="#top" style="display: none; position: fixed; z-index: 2147483647;">Scroll to top</a></body></html>
+
+</body>
+</html>
+
+<script type="text/javascript">
+
+	$(document).ready(function () {
+
+	var geocoder;
+	var map;
+	var marker;
+
+	geocoder = new google.maps.Geocoder();
+
+	/*
+	 * Google Map with marker
+	 */
+	function initialize() {
+		var initialLat = $('.search_latitude').text();
+		var initialLong = $('.search_longitude').text();
+		initialLat = initialLat?initialLat:36.169648;
+		initialLong = initialLong?initialLong:-115.141000;
+
+		var latlng = new google.maps.LatLng(initialLat, initialLong);
+		var options = {
+			zoom: 16,
+			center: latlng,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+
+		map = new google.maps.Map(document.getElementById("geomap"), options);
+
+		geocoder = new google.maps.Geocoder();
+
+		marker = new google.maps.Marker({
+			map: map,
+			draggable: true,
+			position: latlng
+		});
+
+		google.maps.event.addListener(marker, "dragend", function () {
+			var point = marker.getPosition();
+			map.panTo(point);
+			geocoder.geocode({'latLng': marker.getPosition()}, function (results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					map.setCenter(results[0].geometry.location);
+					marker.setPosition(results[0].geometry.location);
+					$('.search_addr').text(results[0].formatted_address);
+					$('.search_latitude').text(marker.getPosition().lat());
+					$('.search_longitude').text(marker.getPosition().lng());
+				}
+			});
+		});
+
+	}
+
+	//google.maps.event.addDomListener(window, 'load', initialize);
+
+
+		//load google map
+		//initialize();
+
+		/*
+		 * autocomplete location search
+		 */
+		var PostCodeid = '#search_location';
+		$(function () {
+			var address = '';
+			$(PostCodeid).autocomplete({
+				source: function (request, response) {
+					geocoder.geocode({
+						'address': request.term,
+						/*componentRestrictions: {country: "us"}*/
+					}, function (results, status) {
+						console.log(status);
+						console.log(results);
+						response($.map(results, function (item) {
+							address += '<li><a class="address_item">'+item.formatted_address+'</a></li>';
+						}));
+
+						$('#search_location_li').after(address);
+					});
+				},
+				select: function (event, ui) {
+					// $('.search_addr').text(ui.item.value);
+					// $('.search_latitude').text(ui.item.lat);
+					// $('.search_longitude').text(ui.item.lon);
+					// var latlng = new google.maps.LatLng(ui.item.lat, ui.item.lon);
+					// marker.setPosition(latlng);
+					// initialize();
+				}
+			});
+		});
+
+		/*
+		 * Point location on google map
+		 */
+		/*$('.get_map').click(function (e) {
+			var address = $(PostCodeid).val();
+			geocoder.geocode({'address': address}, function (results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					map.setCenter(results[0].geometry.location);
+					marker.setPosition(results[0].geometry.location);
+					$('.search_addr').text(results[0].formatted_address);
+					$('.search_latitude').text(marker.getPosition().lat());
+					$('.search_longitude').text(marker.getPosition().lng());
+				} else {
+					alert("Geocode was not successful for the following reason: " + status);
+				}
+			});
+			e.preventDefault();
+		});
+
+		//Add listener to marker for reverse geocoding
+		google.maps.event.addListener(marker, 'drag', function () {
+			geocoder.geocode({'latLng': marker.getPosition()}, function (results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					if (results[0]) {
+						$('.search_addr').text(results[0].formatted_address);
+						$('.search_latitude').text(marker.getPosition().lat());
+						$('.search_longitude').text(marker.getPosition().lng());
+					}
+				}
+			});
+		});*/
+
+
+		$('ul.language-change li a.address_item').click(function(){
+			alert();
+			var address = $(this).text();
+			$('.change-text').text(address);
+		});
+	});
+
+</script>
